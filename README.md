@@ -1,12 +1,13 @@
-Will become a heading
+DNA Alignment project via Needleman Wunsch algroithm
 ==============
 
-Will become a sub heading
+Authors: Zubenko Oleg, Anfinogentov Anton, Alasheev Anton @ **Moscow, Russia / MIPT**
+*April 2015*
 --------------
 
-*This will be Italic*
 
-**This will be Bold**
+
+
 
 - This will be a list item
 - This will be a list item
