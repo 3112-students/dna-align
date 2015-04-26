@@ -1,15 +1,21 @@
 DNA Alignment project via Needleman Wunsch algroithm
 ==============
 
-Authors: Zubenko Oleg, Anfinogentov Anton, Alasheev Anton @ **Moscow, Russia / MIPT**
-*April 2015*
+**Authors**: Zubenko Oleg, Anfinogentov Anton, Alasheev Anton 
+**Location**: Moscow, Russia
+**Date**: April 2015
 --------------
 
-
-
-
-
-- This will be a list item
-- This will be a list item
-
-    Add a indent and this will end up as code
+Main Features
+--------------
+- DNA Alignment
+- Input & Output from TXT files
+- Full view of how the code works via matrix
+- Objective-C such as:
+    class Sequence {
+    public:
+        float penalty;
+        string name;
+        string seq;
+    }
+- DNA Identity level
