@@ -1,8 +1,13 @@
 DNA Alignment via Needleman Wunsch algroithm
 ==============
 
-**Authors**: Zubenko Oleg, Antonov Ivan, Anfinogentov Anton, Alasheev Anton 
+Authors:
 --------------
+- Zubenko Oleg
+- Antonov Ivan
+- Anfinogentov Anton
+- Alasheev Anton 
+
 
 Main Features
 --------------
