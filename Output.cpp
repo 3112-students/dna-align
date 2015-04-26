@@ -1,95 +1,90 @@
-class output
+#include "Output.h"
+        
+Output::Output(Sequence L, Sequence R)
 {
-private:
-        sequence seq1;
-        sequence seq2;
-public:
-        output(sequence L, sequence R)
-        {
-                seq1 = L;
-                seq2 = R;
-        }
+        seq1 = L;
+        seq2 = R;
+}
 
-        void printSequenceName(sequence seq1)
-        {
-                printf("%s ", seq1.name.c_str());
-        }
+void Output::printSequenceName(Sequence seq1)
+{
+        printf("%s ", seq1.name.c_str());
+}
 
-        void printSequence(sequence seq1)
-        {
-                printf("%s ", seq1.seq.c_str());
-        }
+void Output::printSequence(Sequence seq1)
+{
+        printf("%s ", seq1.seq.c_str());
+}
 
-        void printSequenceLength(sequence seq1)
-        {
-                printf("[%lu]\n", seq1.seq.length());
-        }
+void Output::printSequenceLength(Sequence seq1)
+{
+        printf("[%lu]\n", seq1.seq.length());
+}
 
-        void printAlignedSequences(sequence seq1, sequence seq2, sequence sequenceOneOG, sequence sequenceTwoOG)
+void Output::printAlignedSequences(Sequence seq1, Sequence seq2, Sequence sequenceOneOG, Sequence sequenceTwoOG)
+{
+        if (seq1.name.length() > seq2.name.length())
         {
-                if (seq1.name.length() > seq2.name.length())
+                printSequenceName(seq1);
+                printSequence(seq1);
+                printSequenceLength(sequenceOneOG);
+                printSequenceName(seq2);
+                for (int i = 0; i < seq1.name.length()-seq2.name.length(); ++i)
                 {
-                        printSequenceName(seq1);
-                        printSequence(seq1);
-                        printSequenceLength(sequenceOneOG);
-                        printSequenceName(seq2);
-                        for (int i = 0; i < seq1.name.length()-seq2.name.length(); ++i)
-                        {
-                                printf(" ");
-                        }
-                        printSequence(seq2);
-                        printSequenceLength(sequenceTwoOG);
-                        for (int i = 0; i < seq1.name.length()+1; ++i)
-                        {
-                                printf(" ");
-                        }
-                }  
-                else 
+                        printf(" ");
+                }
+                printSequence(seq2);
+                printSequenceLength(sequenceTwoOG);
+                for (int i = 0; i < seq1.name.length()+1; ++i)
                 {
-                        printSequenceName(seq1);
-                        for (int i = 0; i < seq2.name.length()-seq1.name.length(); ++i)
-                        {
-                                printf(" ");
-                        }
-                        printSequence(seq1);
-                        printSequenceLength(sequenceOneOG);
-                        printSequenceName(seq2);
-                        printSequence(seq2);
-                        printSequenceLength(sequenceTwoOG);
-                        for (int i = 0; i < seq2.name.length()+1; ++i)
-                        {
-                                printf(" ");
-                        }
+                        printf(" ");
+                }
+        }  
+        else 
+        {
+                printSequenceName(seq1);
+                for (int i = 0; i < seq2.name.length()-seq1.name.length(); ++i)
+                {
+                        printf(" ");
+                }
+                printSequence(seq1);
+                printSequenceLength(sequenceOneOG);
+                printSequenceName(seq2);
+                printSequence(seq2);
+                printSequenceLength(sequenceTwoOG);
+                for (int i = 0; i < seq2.name.length()+1; ++i)
+                {
+                        printf(" ");
                 }
         }
+}
 
-        void printIdentity()
+void Output::printIdentity()
+{
+        float identityCount = 0;
+        float identityLength = seq1.seq.length();
+        for (int i = 0; i < identityLength; ++i)
         {
-                float identityCount = 0;
-                float identityLength = seq1.seq.length();
-                for (int i = 0; i < identityLength; ++i)
+                if (seq1.seq[i] == seq2.seq[i])
                 {
-                        if (seq1.seq[i] == seq2.seq[i])
-                        {
-                                ++identityCount;
-                        }
+                        ++identityCount;
                 }
-                printf("Identitiy = %.f%%. \n", 100 * identityCount / identityLength);
         }
+        printf("Identitiy = %.f%%. \n", 100 * identityCount / identityLength);
+}
 
-        void printMatch()
+void Output::printMatch()
+{
+        for (int i = 0; i < seq1.seq.length(); ++i)
         {
-                for (int i = 0; i < seq1.seq.length(); ++i)
+                if (seq1.seq[i] == seq2.seq[i])
                 {
-                        if (seq1.seq[i] == seq2.seq[i])
-                        {
-                                printf("*");
-                        }
-                        else
-                        {
-                                printf(" ");
-                        }
+                        printf("*");
                 }
-                printf("\n");
+                else
+                {
+                        printf(" ");
+                }
         }
-};
+        printf("\n");
+}
