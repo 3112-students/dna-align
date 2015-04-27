@@ -19,6 +19,10 @@ public:
 
         Sequence(Sequence const &Seq);
 
+        void reed(string filename);
+
+//        void reed(char filename[]);
+
         void change(string NAME, string SEQ, float PENALTY);            
 
         void print();

@@ -23,8 +23,18 @@ int main() {
 }
 */
 
-int main() {
-        Sequence seq1("DNA1.txt"); Sequence seq2("DNA2.txt");
+int main(int argc, char *argv[]) {
+ 
+        Sequence seq1;
+        Sequence seq2;
+        if (argc == 1) {
+                seq1.reed("DNA1.txt");
+                seq2.reed("DNA2.txt");
+        }
+        else {
+                seq1.reed(argv[1]);
+                seq2.reed(argv[2]);
+        }
 
         Sequence al_seq1; Sequence al_seq2;
 

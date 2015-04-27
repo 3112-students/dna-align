@@ -28,6 +28,26 @@ Sequence::Sequence(Sequence const &Seq) {
         penalty = Seq.penalty;
 }
         
+void Sequence::reed(string filename) {
+        string str_penalty;
+        ifstream file(filename.c_str());
+        getline(file, name);
+        getline(file, seq);
+        getline(file, str_penalty);
+        file.close();
+        penalty = atof(str_penalty.c_str());
+}
+
+/*void Sequence::reed(char filename[]) {
+        string str_penalty;
+        ifstream file(filename);
+        getline(file, name);
+        getline(file, seq);
+        getline(file, str_penalty);
+        file.close();
+        penalty = atof(str_penalty.c_str());
+}
+*/
 void Sequence::change(string NAME, string SEQ, float PENALTY) {
         name = NAME;
         seq = SEQ;
