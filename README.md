@@ -1,26 +1,25 @@
 DNA Alignment via Needleman Wunsch algroithm
 ==============
 
-Authors:
---------------
-- Zubenko Oleg
-- Antonov Ivan
-- Anfinogentov Anton
-- Alasheev Anton 
-
-
 Main Features
 --------------
 - DNA Alignment
 - Input & Output from TXT files
-- Full view of how the code works via matrix
-- Objective-C usage such as:
-```c
-    class Sequence {
-    public:
-        float penalty;
-        string name;
-        string seq;
-    }
-```    
+- Matrix output
+- Objective-C
 - DNA Identity level
+
+TODO
+--------------
+- Class of Input
+
+- Penalty
+
+- FASTA links
+
+- Output of score
+- Output of traceback
+- Name of output file
+- Full file output with all functions
+
+- Usage

@@ -6,18 +6,22 @@ class Output
 private:
         Sequence seq1;
         Sequence seq2;
+        Sequence al_seq1;
+        Sequence al_seq2;
 public:
-        Output(Sequence L, Sequence R);
+        Output(Sequence a, Sequence b, Sequence c, Sequence d);
 
-        void printSequenceName(Sequence seq1);
+        void printSequenceName(Sequence testSequence);
 
-        void printSequence(Sequence seq1);
+        void printSequence(Sequence testSequence);
 
-        void printSequenceLength(Sequence seq1);
+        void printSequenceLength(Sequence testSequence);
 
-        void printAlignedSequences(Sequence seq1, Sequence seq2, Sequence sequenceOneOG, Sequence sequenceTwoOG);
+        void printAlignedSequences();
         
-        void printIdentity();
+        void printIdentity(int accuracy);
 
-        void printMatch();
+        void printMatch(char const *star);
+
+        void printFile(string fileName);
 };

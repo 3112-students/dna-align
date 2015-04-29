@@ -2,30 +2,30 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <stdlib.h>
 #include <cstdlib>
+#include <iomanip>
+
 using namespace std;
 
 class Sequence {
 public:
-        float penalty;
+        double penalty;
         string name;
         string seq;
         
         Sequence();
 
-        Sequence(string filename);
+        Sequence(char const *seqName, string fileName);
 
-        Sequence(string NAME, string SEQ, float PENALTY);
+        Sequence(string NAME, string SEQ);
+
+        Sequence(string NAME, string SEQ, double PENALTY);
 
         Sequence(Sequence const &Seq);
 
-        void reed(string filename);
-
-//        void reed(char filename[]);
-
-        void change(string NAME, string SEQ, float PENALTY);            
+        void change(string NAME, string SEQ, double PENALTY);            
 
         void print();
 
- //       void print_penalty();
 };
