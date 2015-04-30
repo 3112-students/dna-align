@@ -23,5 +23,11 @@ public:
 
         void printMatch();
 
-        void printFile(string fileName);
+        void printFileMatch();
+
+        float getIdentity();
+
+        int getSequenceLength(Sequence al_seq1);
+
+        void printFile(int accuracy, string fileName);
 };

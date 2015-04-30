@@ -59,19 +59,38 @@ void Score::print() {
         cout<<"\n";
 }
 
-void Score::into_file(string file_name) {
+void Score::into_file(string FN) {
         int string_num = array.size();
         int column_num = array[0].size();
-        ofstream out(file_name.c_str());
+        ofstream out(FN.c_str());
         for (int i=0; i<string_num; i++) {
-                for (int j=0; j<column_num; j++) {
-                        if (array[i][j] < 0) {
-                                out<<array[i][j]<<" ";
-                        } else {
-                                out<<" "<<array[i][j]<<" ";        
+                for (int j=0; j<column_num; j++) 
+                {
+                        if (array[i][j] < -99)
+                        {
+                            out<<array[i][j]<<" ";
                         }
+                        else if (array[i][j] < -9)
+                        {
+                            out<<" "<<array[i][j]<<" ";
+                        }
+                        else if (array[i][j] < 0)
+                        {
+                            out<<"  "<<array[i][j]<<" ";
+                        }
+                        else if (array[i][j] < 10)
+                        {
+                           out<<"   "<<array[i][j]<<" "; 
+                        }
+                        else if (array[i][j] < 100)
+                        {
+                            out<<"  "<<array[i][j]<<" "; 
+                        }
+                        else
+                            out<<" "<<array[i][j]<<" ";
                 }
-                out<<"\n";
+                out<<endl;
         }
         out.close();
+        cout<<"Score printed into "<<FN<<endl;
 }

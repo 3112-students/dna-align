@@ -69,12 +69,12 @@ void NeedlemanWunsch::printScore() {
         score.print();
 }
 
-void NeedlemanWunsch::score_intofile(string filename) {
+void NeedlemanWunsch::score_intofile(string FN) {
         Score score(seq1, seq2);        
-        score.into_file(filename);
+        score.into_file(FN);
 }
 
 void NeedlemanWunsch::traceback_intofile(string filename) {
-        Score traceback(seq1, seq2);        
+        Traceback traceback(seq1, seq2);        
         traceback.into_file(filename);
 }

@@ -13,5 +13,5 @@ public:
 
         void print();
 
-        void into_file(string file_name); 
+        void into_file(string FN); 
 };

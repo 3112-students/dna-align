@@ -82,4 +82,5 @@ void Traceback::into_file(string file_name) {
                 out<<"\n";
         }
         out.close();
+        cout<<"Traceback printed into "<<file_name<<endl;
 }

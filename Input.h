@@ -5,11 +5,15 @@ class Input
 {
 private:
 	int argc;
-	string argv[10];
+	string argv[20];
 public:
 	void usage();
 
 	void viewSequence();
+
+	int outputMode();
+
+	void viewMode(int &accuracy, Sequence &seq1, Sequence &seq2, string &alignFilename, string &tracebackFilename, string &scoreFilename);
 
 	void readSequence(Sequence &seq1, Sequence &seq2);
 

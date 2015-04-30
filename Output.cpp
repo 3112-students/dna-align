@@ -8,12 +8,16 @@ Output::Output(Sequence a, Sequence b, Sequence c, Sequence d)
         al_seq2 = d;
 }
 
-void Output::printMatch() {
-    for (int i = 0; i < seq1.seq.length(); ++i) {
-        if (al_seq1.seq[i] == al_seq2.seq[i]) {
+void Output::printMatch() 
+{
+    for (int i = 0; i < seq1.seq.length(); ++i) 
+    {
+        if (al_seq1.seq[i] == al_seq2.seq[i]) 
+        {
             cout<<"*";
         }
-        else {
+        else 
+        {
             cout<<" ";
         }
     }
@@ -31,7 +35,7 @@ void Output::printIdentity(int accuracy)
                         ++identityCount;
                 }
         }
-        std::cout<<std::fixed<<"Terminal output, sequence identity = "<<std::setprecision(accuracy)<< 100*identityCount/identityLength<< "%"<<std::endl<<std::endl<<std::endl;
+        std::cout<<std::fixed<<"Terminal output, sequence identity = "<<std::setprecision(accuracy+2)<< 100*identityCount/identityLength<< "%"<<std::endl<<std::endl<<std::endl;
 }
 
 void Output::printAlignedSequences() {
@@ -47,79 +51,103 @@ void Output::printAlignedSequences() {
         }
         cout<<"        ";
     }  
-    else {
-            cout<<seq1.name<<"        ";
-            for (int i = 0; i < seq2.name.length()-seq1.name.length(); ++i) {
-                    cout<<" ";
-            }
-            cout<<al_seq1.seq<<" "<<seq1.seq.length()<<endl;
-            cout<<al_seq2.name<<"        "<<al_seq2.seq<<" "<<al_seq2.seq.length()<<endl;
-            for (int i = 0; i < seq2.name.length(); ++i) {
-                    cout<<" ";
-            }
-            cout<<"        ";
+    else 
+    {
+        cout<<seq1.name<<"        ";
+        for (int i = 0; i < seq2.name.length()-seq1.name.length(); ++i) 
+        {
+            cout<<" ";
+        }
+        cout<<al_seq1.seq<<" "<<seq1.seq.length()<<endl;
+        cout<<al_seq2.name<<"        "<<al_seq2.seq<<" "<<al_seq2.seq.length()<<endl;
+        for (int i = 0; i < seq2.name.length(); ++i) 
+        {
+            cout<<" ";
+        }
+        cout<<"        ";
     }
 }
 
-// void Output::printIdentityFile(int accuracy)
-// {
-//     float identityCount = 0;
-//     float identityLength = al_seq1.seq.length();
-//     for (int i = 0; i < identityLength; ++i) {
-//         if (al_seq1.seq[i] == al_seq2.seq[i]) {
-//         ++identityCount;
-//         }
-//     }
-//     out<<"FASTA format, sequence identity = "<<setprecision(accuracy)<<100*identityCount/identityLength<<"%"<<endl<<endl<<endl;
-// }
+float Output::getIdentity()
+{
+    float identityCount = 0;
+    float identityLength = al_seq1.seq.length();
+    for (int i = 0; i < identityLength; ++i) 
+    {
+        if (al_seq1.seq[i] == al_seq2.seq[i]) 
+        {
+            ++identityCount;
+        }
+    }
+    float result = 100*identityCount/identityLength;
+    return (result);
+}
 
-void Output::printFile(string fileName) 
+int Output::getSequenceLength(Sequence al_seq1)
+{
+    return(al_seq1.seq.length());
+}
+
+void Output::printFile(int accuracy, string fileName) 
 {
         ofstream out(fileName.c_str());
-
-        if (al_seq1.name.length() > al_seq2.name.length()) {
-            out<<al_seq1.name<<"        "<<al_seq1.seq<<endl<<al_seq2.name<<"        ";
-            for (int i = 0; i < al_seq1.name.length() - al_seq2.name.length(); ++i) {
+        /* Identity */
+        out<<"FASTA format, sequence identity = "<<setprecision(accuracy+2)<<getIdentity()<<"%"<<endl<<endl<<endl;
+        /* Aligned DNAs */
+        if (al_seq1.name.length() > al_seq2.name.length()) 
+        {
+            out<<al_seq1.name<<"        "<<al_seq1.seq<<" ["<< getSequenceLength(seq1)<<"]"<<endl<<al_seq2.name<<"        ";
+            for (int i = 0; i < al_seq1.name.length() - al_seq2.name.length(); ++i) 
+            {
                 out<<" ";
             }
-            out<<al_seq2.seq<<endl<<"        ";
+            out<<al_seq2.seq<<" ["<< getSequenceLength(seq2)<<"]"<<endl;
 
-            for (int i = 0; i < al_seq1.name.length()+8; ++i) {
+            for (int i = 0; i < al_seq1.name.length()+8; ++i) 
+            {
                 out<<" ";
             }
-
-            for (int i = 0; i < al_seq1.seq.length(); ++i) {
-                if (al_seq1.seq[i] == al_seq2.seq[i]) {
+            /* Printing Matches */
+            for (int i = 0; i < al_seq1.seq.length(); ++i) 
+            {
+                if (al_seq1.seq[i] == al_seq2.seq[i]) 
+                {
                     out<<"*";
                 }
-                else {
+                else 
+                {
                     out<<" ";
                 }
-            }
+            }  
         }  
-        else {
+        else 
+        {
             out<<al_seq1.name<<"        ";
-            for (int i = 0; i < al_seq2.name.length()-al_seq1.name.length(); ++i) {
+            for (int i = 0; i < al_seq2.name.length()-al_seq1.name.length(); ++i) 
+            {
                 out<<" ";
             }
-            out<<al_seq1.seq<<endl<<al_seq2.name<<"        "<<al_seq2.seq<<endl;
+            out<<al_seq1.seq<<" ["<< getSequenceLength(seq1)<<"]"<<endl<<al_seq2.name<<"        "<<al_seq2.seq<<" ["<< getSequenceLength(seq2)<<"]"<<endl;
 
-            for (int i = 0; i < seq2.name.length(); ++i) {
+            for (int i = 0; i < seq2.name.length()+8; ++i) 
+            {
                 out<<" ";
-            }
-            out<<"        ";
-
-            for (int i = 0; i < al_seq1.seq.length(); ++i) {
-                if (al_seq1.seq[i] == al_seq2.seq[i]) {
+            }            
+            /* Printing Matches */
+            for (int i = 0; i < al_seq1.seq.length(); ++i) 
+            {
+                if (al_seq1.seq[i] == al_seq2.seq[i]) 
+                {
                     out<<"*";
                 }
-                else {
+                else 
+                {
                     out<<" ";
                 }
-            }                 
+            }                
         }
 
         out<<endl; 
         out.close();
-        printf("successfully printed to %s\n", fileName.c_str());
+        cout<<"Aligned sequences printed into "<<fileName<<endl;
 }
