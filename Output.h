@@ -21,7 +21,7 @@ public:
         
         void printIdentity(int accuracy);
 
-        void printMatch(char const *star);
+        void printMatch();
 
         void printFile(string fileName);
 };

@@ -13,10 +13,7 @@ void Input::usage() {
 }
 
 void Input::viewSequence() {
-	if (argc != 2) {
-    	usage();
-    } 
-    else {
+
         ifstream file (argv[1]);
         string temp;
         while (!file.eof()) {   
@@ -26,7 +23,6 @@ void Input::viewSequence() {
 	        getline(file, temp);
         }
         file.close();
-    }
 }
 
 void Input::readSequence(Sequence &seq1, Sequence &seq2) { // THIS IS VERY FUCKING STUPID

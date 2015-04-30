@@ -8,8 +8,8 @@ c++ -c -o Output.o Output.cpp;
 
 c++ -c -o Input.o Input.cpp;
 
-c++ -c -o align.o align.cpp; 
-
 c++ -o align align.o Output.o Input.o Sequence.o Matrix.o Score.o Traceback.o NeedlemanWunsch.o;
 
 ./align <file>
+
+./align line.fasta --identity 3

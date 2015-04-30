@@ -15,18 +15,9 @@ int main(int argc, char const *argv[])
 
         Output Out(seq1, seq2, al_seq1, al_seq2);
         Out.printFile("aligned.txt");
-        /*
-        Out.printAlignedSequences(); // Print into terminal
-
-        if (strcmp(argv[i], "--match") == 0)
-        {
-                Out.printMatch(argv[i+1]);
-        }
-        if (strcmp(argv[i], "--identity") == 0)
-        {
-                Out.printIdentity(atoi(argv[i+1])); 
-        } 
-        */
+        //Out.printIdentity(atoi(argv[3]));
+        //Out.printAlignedSequences();
+        //Out.printMatch();
 
         return 0;
 }
