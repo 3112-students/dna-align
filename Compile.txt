@@ -3,18 +3,13 @@ c++ -c -o Matrix.o Matrix.cpp;
 c++ -c -o Score.o Score.cpp; 
 c++ -c -o Traceback.o Traceback.cpp; 
 c++ -c -o NeedlemanWunsch.o NeedlemanWunsch.cpp; 
+
 c++ -c -o Output.o Output.cpp; 
+
+c++ -c -o Input.o Input.cpp;
+
 c++ -c -o align.o align.cpp; 
-c++ -o align align.o Output.o Sequence.o Matrix.o Score.o Traceback.o NeedlemanWunsch.o;
-./align --fasta test.fasta Henlea_perpusilla COI49 --identity 4 --gap _
-./align --manual DNA1 ATTTGGCTCTGATC -1 DNA2 ATGCGCTGAC -1 --identity 4 --gap _
 
+c++ -o align align.o Output.o Input.o Sequence.o Matrix.o Score.o Traceback.o NeedlemanWunsch.o;
 
---manual < > < > < > < >
---penalty < > < >
---gap < >
---identity < >
---output < >
---score
---traceback
---fasta < > < > < >
+./align <file>

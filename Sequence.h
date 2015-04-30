@@ -16,11 +16,7 @@ public:
         
         Sequence();
 
-        Sequence(char const *seqName, string fileName);
-
-        Sequence(string NAME, string SEQ);
-
-        Sequence(string NAME, string SEQ, double PENALTY);
+        Sequence(string seqName, string fileName);
 
         Sequence(Sequence const &Seq);
 

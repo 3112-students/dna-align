@@ -10,44 +10,39 @@ Output::Output(Sequence a, Sequence b, Sequence c, Sequence d)
 
 void Output::printSequenceName(Sequence testSequence)
 {
-        printf("%s ", testSequence.name.c_str());
+        cout<<testSequence.name<<" ";
 }
 
 void Output::printSequence(Sequence testSequence)
 {
-        printf("%s ", testSequence.seq.c_str());
+        cout<<testSequence.seq;
 }
 
 void Output::printSequenceLength(Sequence testSequence)
 {
-        printf("[%lu]\n", testSequence.seq.length());
+        cout<<"["<<testSequence.seq.length()<<"]";
 }
 
 void Output::printAlignedSequences()
 {
         if (seq1.name.length() > seq2.name.length())
         {
-                printSequenceName(seq1);
-                printSequence(al_seq1);
-                printSequenceLength(seq1);
-                printSequenceName(seq2);
-                for (int i = 0; i < seq1.name.length()-seq2.name.length(); ++i)
-                {
-                        printf(" ");
-                }
-                printSequence(al_seq2);
-                printSequenceLength(seq2);
-                for (int i = 0; i < seq1.name.length()+1; ++i)
-                {
-                        printf(" ");
-                }
+            cout<<seq1.name<<" "<<al_seq1.seq<<" "<<seq1.seq.length()<<endl;
+            cout<<seq2.name<<" ";
+            for (int i = 0; i < seq1.name.length()-seq2.name.length(); ++i) {
+                cout<<" ";
+            }
+            cout<<al_seq2.seq<<" "<<seq2.seq.length();
+            for (int i = 0; i < seq1.name.length()+1; ++i) {
+                cout<<" ";
+            }
         }  
         else 
         {
                 printSequenceName(seq1);
                 for (int i = 0; i < seq2.name.length()-seq1.name.length(); ++i)
                 {
-                        printf(" ");
+                        cout<<" ";
                 }
                 printSequence(al_seq1);
                 printSequenceLength(seq1);
@@ -72,8 +67,7 @@ void Output::printIdentity(int accuracy)
                         ++identityCount;
                 }
         }
-        std::cout << std::fixed << std::setprecision(accuracy) << 100 * identityCount / identityLength << "%%"<<std::endl;
-       // printf("Identitiy = %.3f%%. \n", 100 * identityCount / identityLength);
+        std::cout << std::fixed << std::setprecision(accuracy) << 100 * identityCount / identityLength << "%"<<std::endl;
 }
 
 void Output::printMatch(char const *star)
@@ -92,10 +86,77 @@ void Output::printMatch(char const *star)
         printf("\n");
 }
 
-void Output::printFile(string fileName) {
+void Output::printFile(string fileName) 
+{
         ofstream out(fileName.c_str());
-        out<<"DNA 1: "<<al_seq1.seq<<" \n";
-        out<<"DNA 2: "<<al_seq2.seq;
+
+        float identityCount = 0;
+        float identityLength = al_seq1.seq.length();
+        for (int i = 0; i < identityLength; ++i) {
+            if (al_seq1.seq[i] == al_seq2.seq[i]) {
+                ++identityCount;
+            }
+        }
+
+        out<<"FASTA format, sequence identity = "<< setprecision(3) <<100 * identityCount / identityLength<<"%"<<endl<<endl<<endl;
+   
+
+        if (al_seq1.name.length() > al_seq2.name.length()) {
+            out<< al_seq1.name << "        " << al_seq1.seq << endl << al_seq2.name <<"        ";
+            for (int i = 0; i < al_seq1.name.length() - al_seq2.name.length(); ++i)
+            {
+                    out<<" ";
+            }
+            out<< al_seq2.seq << endl<<"        ";
+
+            for (int i = 0; i < al_seq1.name.length()+8; ++i)
+            {
+                out<<" ";
+            }
+
+            for (int i = 0; i < al_seq1.seq.length(); ++i)
+            {
+                    if (al_seq1.seq[i] == al_seq2.seq[i])
+                    {
+                            out<<"*";
+                    }
+                    else
+                    {
+                            out<<" ";
+                    }
+            }                
+
+        }  
+        else 
+        {
+            out<<al_seq1.name<<"        ";
+            for (int i = 0; i < al_seq2.name.length()-al_seq1.name.length(); ++i)
+            {
+                out<<" ";
+            }
+            out<<al_seq1.seq<<endl<<al_seq2.name<<"        "<<al_seq2.seq<<endl;
+
+            for (int i = 0; i < seq2.name.length(); ++i)
+            {
+                out<<" ";
+            }
+            out<<"        ";
+
+            for (int i = 0; i < al_seq1.seq.length(); ++i)
+            {
+                    if (al_seq1.seq[i] == al_seq2.seq[i])
+                    {
+                            out<<"*";
+                    }
+                    else
+                    {
+                            out<<" ";
+                    }
+            }                 
+        }
+
+        out<<"\n"; 
+
         out.close();
-        printf("File was successfully printed to %s\n", fileName.c_str());
+        printf("successfully printed to %s\n", fileName.c_str());
 }

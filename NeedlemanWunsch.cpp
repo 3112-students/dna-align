@@ -36,14 +36,14 @@ void NeedlemanWunsch::align(Sequence &al_seq1, Sequence &al_seq2) {
                         }       
                         else if (traceback.array[i][j] == '~') 
                         {
-                                        al_seq1.seq[k] = '_';
+                                        al_seq1.seq[k] = '-';
                                         al_seq2.seq[k] = seq2.seq[j-1];
                                         j--;
                         }
                         else if (traceback.array[i][j] == '|') 
                         {
                                                 al_seq1.seq[k] = seq1.seq[i-1];
-                                                al_seq2.seq[k] = '_';
+                                                al_seq2.seq[k] = '-';
                                                 i--;
                         }
                         k--;

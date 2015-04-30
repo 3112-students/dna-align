@@ -11,15 +11,14 @@ Main Features
 
 TODO
 --------------
-- Class of Input
+- FASTA links support
+- Fully responsive output file
 
-- Penalty
-
-- FASTA links
-
-- Output of score
-- Output of traceback
-- Name of output file
-- Full file output with all functions
+- Penalty mode --penalty <-1> <-2>
+- Gap symbol mode --gap <->
+- Number of digits in identity % mode --identity <3>
+- Output variable filename mode --output <file.txt>
+- Traceback output mode
+- Score output mode
 
 - Usage

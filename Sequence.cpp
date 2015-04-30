@@ -5,12 +5,12 @@ Sequence::Sequence() {
         seq = "";
         penalty = 0;
 }        
-
-/* Fasta (very dumb & only for 2 sequences) */
-Sequence::Sequence (char const *seqName, string fileName) {
+        
+Sequence::Sequence (string seqName, string fileName) {
         ifstream file (fileName.c_str());
         while (!file.eof())
         {
+                string name;
                 getline(file, name);
                 name.erase(0,1);
                 if (name == seqName)
@@ -25,21 +25,6 @@ Sequence::Sequence (char const *seqName, string fileName) {
         }
         file.close();
 }
-
-/* Standard manual input */
-Sequence::Sequence(string NAME, string SEQ) {
-        name = NAME;
-        seq = SEQ;
-        penalty = -1;
-}
-
-/* Manual input + penalty */
-Sequence::Sequence(string NAME, string SEQ, double PENALTY) {
-        name = NAME;
-        seq = SEQ;
-        penalty = PENALTY;
-}
-
 
 Sequence::Sequence(Sequence const &Seq) {
         name = Seq.name;
