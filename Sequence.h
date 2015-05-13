@@ -23,5 +23,4 @@ public:
         void change(string NAME, string SEQ, double PENALTY);            
 
         void print();
-
 };

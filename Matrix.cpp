@@ -7,5 +7,3 @@ int Matrix::weight(int i, int j, string DNA1, string DNA2) {
                 return 0;
         }
 }
-//virtual void Matrix::print() = 0;
-//virtual void Matrix::into_file(string file_name) = 0;

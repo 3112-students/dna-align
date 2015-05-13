@@ -3,24 +3,22 @@
 Sequence::Sequence() {
         name = "";
         seq = "";
-        penalty = 0;
+        penalty = -1;
 }        
         
 Sequence::Sequence (string seqName, string fileName) {
         ifstream file (fileName.c_str());
-        while (!file.eof())
-        {
-                string name;
-                getline(file, name);
-                name.erase(0,1);
-                if (name == seqName)
-                {
+        while (!file.eof()) {
+                string temp;
+                getline(file, temp);
+                temp.erase(0,1);
+                if (temp == seqName) {
                         getline(file, seq);
+                        name = seqName;
                         break;
                 }
-                else 
-                {
-                        getline(file, name);
+                else {
+                        getline(file, temp);
                 }
         }
         file.close();

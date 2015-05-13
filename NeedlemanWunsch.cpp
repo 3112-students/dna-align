@@ -21,27 +21,22 @@ void NeedlemanWunsch::align(Sequence &al_seq1, Sequence &al_seq2) {
                 int j = seq2.seq.length();
                 int length = i+j, k = length-1;
 
-                for (int i=0; i<length; i++) 
-                {
+                for (int i=0; i<length; i++) {
                         al_seq1.seq += '0';
                         al_seq2.seq += '0';
                 }
-                while (traceback.array[i][j] != '0') 
-                {    
-                        if (traceback.array[i][j] == 'X') 
-                        {
+                while (traceback.array[i][j] != '0') {    
+                        if (traceback.array[i][j] == 'X') {
                                 al_seq1.seq[k] = seq1.seq[i-1];
                                 al_seq2.seq[k] = seq2.seq[j-1];
                                 i--; j--;
                         }       
-                        else if (traceback.array[i][j] == '~') 
-                        {
+                        else if (traceback.array[i][j] == '~') {
                                         al_seq1.seq[k] = '-';
                                         al_seq2.seq[k] = seq2.seq[j-1];
                                         j--;
                         }
-                        else if (traceback.array[i][j] == '|') 
-                        {
+                        else if (traceback.array[i][j] == '|') {
                                                 al_seq1.seq[k] = seq1.seq[i-1];
                                                 al_seq2.seq[k] = '-';
                                                 i--;
@@ -52,21 +47,6 @@ void NeedlemanWunsch::align(Sequence &al_seq1, Sequence &al_seq2) {
                 al_seq2.seq = shortened(al_seq2.seq);
                 al_seq1.name = seq1.name;
                 al_seq2.name = seq2.name;
-}
-
-void NeedlemanWunsch::printSeq() {
-        seq1.print();
-        seq2.print();
-}
-
-void NeedlemanWunsch::printTraceback() {
-        Traceback traceback(seq1, seq2);
-        traceback.print();
-}
-
-void NeedlemanWunsch::printScore() {
-        Score score(seq1, seq2);
-        score.print();
 }
 
 void NeedlemanWunsch::score_intofile(string FN) {
