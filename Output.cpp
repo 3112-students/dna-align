@@ -50,6 +50,8 @@ void Output::printAlignedSequences() {
     }
 }
 
+/* File Output */
+
 float Output::getIdentity() {
     float identityCount = 0;
     float identityLength = al_seq1.seq.length();
